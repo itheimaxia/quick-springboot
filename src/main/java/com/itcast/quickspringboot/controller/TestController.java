@@ -38,7 +38,6 @@ public class TestController {
 
     @RequestMapping(value = "validator", method = RequestMethod.POST)
     public Result test3(@Valid @RequestBody PageBO param) {
-
         return null;
     }
 

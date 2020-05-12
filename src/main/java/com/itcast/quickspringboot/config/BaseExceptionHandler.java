@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+//异常处理类 拦截所有的controller方法，然后进行处理
 @ControllerAdvice
 public class BaseExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(BaseExceptionHandler.class);
 
+    //处理异常
     @ExceptionHandler(value = UserException.class)
+    //返回json
     @ResponseBody
     public Result userError(UserException e) {
         log.error("用户异常",e);
@@ -38,10 +41,11 @@ public class BaseExceptionHandler {
         return new Result(false, StatusCode.PARAMETER_ERROR, sb.toString());
     }
 
+    //处理所有的异常
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result error(Exception e) {
-        e.printStackTrace();
+        log.error("系统异常",e);
         return new Result(false, StatusCode.ERROR, e.getMessage());
     }
 }

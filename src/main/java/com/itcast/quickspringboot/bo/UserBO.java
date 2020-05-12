@@ -2,13 +2,13 @@ package com.itcast.quickspringboot.bo;
 
 import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 public class UserBO {
 
-    @NotBlank
+    //Blank = null || ""
+    @NotBlank(message = "不能为空")
+    //@Pattern(regexp="^[0-9]{1,2}$",message="年龄是整数")
     String id;
 
     public String getId() {
